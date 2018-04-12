@@ -1,0 +1,22 @@
+﻿@model SAMarineAndBoatSupplies.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row d-flex align-items-center ">
+    <div id="product-img-container" class="col-sm-6 animated fadeIn align-self-stretch">
+        <img id="product-image" src="~/images/@Model.ImagePath" alt="Alternate Text" />
+    </div>
+
+    <div class="col-sm-6 animated fadeIn">
+        <div class="d-flex flex-column justify-content-between">
+            <h1>@Model.Name</h1>
+            <p>@Model.Description</p>
+            <h3>@Model.Price.ToString("c")</h3>
+            <button class="btn btn-outline-light">Add To Cart</button>
+        </div>
+    </div>
+</div>
+
+<a class="d-flex align-items-baseline" asp-action="Index"><div class="triangle"></div><h4>Back to List</h4></a>

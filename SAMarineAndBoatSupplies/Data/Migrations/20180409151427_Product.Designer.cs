@@ -11,9 +11,10 @@ using System;
 namespace SAMarineAndBoatSupplies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180409151427_Product")]
+    partial class Product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,24 +200,6 @@ namespace SAMarineAndBoatSupplies.Data.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("SAMarineAndBoatSupplies.Models.ShoppingCartItem", b =>
-                {
-                    b.Property<int>("ShoppingCartItemId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("ProductId");
-
-                    b.Property<int>("Quantity");
-
-                    b.Property<string>("ShoppingCartId");
-
-                    b.HasKey("ShoppingCartItemId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ShoppingCartItems");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -260,13 +243,6 @@ namespace SAMarineAndBoatSupplies.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SAMarineAndBoatSupplies.Models.ShoppingCartItem", b =>
-                {
-                    b.HasOne("SAMarineAndBoatSupplies.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

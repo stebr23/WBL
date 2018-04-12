@@ -1,0 +1,83 @@
+﻿@model SAMarineAndBoatSupplies.Models.ProdctViewModel.ProductViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Products</h2>
+<!--
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<form asp-action="Index" asp-controller="Products" method="post">
+    <p>
+
+        <select asp-for="productCategory" asp-items="Model.categories">
+            <option value="">All</option>
+        </select>
+            Title: <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+            -->
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-4">
+
+        <div class="sidebar list-group d-none d-sm-block">
+
+            <a href="#" class="list-group-item list-group-item-action active">All</a>
+            @foreach (var cat in "Cats")
+            {
+                <a href="#" class="list-group-item list-group-item-action">@cat</a>
+            }
+
+        </div>
+
+        <div class="sidebar list-group d-sm-none">
+
+            <button class="btn list-group-item navbar-toggler active" id="categories-button" data-toggle="collapse" data-target="#cat-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle categories">
+                Categories
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div id="cat-menu" class="collapse">
+
+                <a href="#" class="list-group-item list-group-item-action active">All</a>
+                @foreach (var cat in "Cats")
+                {
+                    <a href="#" class="list-group-item list-group-item-action">@cat</a>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-8 animated fadeIn">
+        <div id="product-list" class="d-flex flex-wrap justify-content-around">
+            @foreach (var product in Model.Products)
+            {
+                <a asp-action="Details" asp-route-id="@product.Id">
+                    <div class="card">
+                        <div class="card-img-top" >
+                            <img src="~/images/@product.ImagePath" alt="Alternate Text" />
+                        </div>
+                        <div class="card-body" data-toggle="tooltip" title="View Item Details" data-placement="bottom">
+                            <h6 class="card-title">@product.Name</h6>
+                            <p class="card-text">@product.Price.ToString("c")</p>
+                        </div>
+                    </div>
+                </a>
+            }
+
+
+        </div>
+    </div>
+</div>

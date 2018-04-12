@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SAMarineAndBoatSupplies.Data;
 using SAMarineAndBoatSupplies.Models;
 using SAMarineAndBoatSupplies.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace SAMarineAndBoatSupplies
 {
@@ -36,6 +37,9 @@ namespace SAMarineAndBoatSupplies
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
             services.AddMvc();
         }
 
@@ -54,7 +58,7 @@ namespace SAMarineAndBoatSupplies
             }
 
             app.UseStaticFiles();
-
+            //app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
