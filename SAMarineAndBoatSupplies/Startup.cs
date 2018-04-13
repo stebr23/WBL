@@ -34,6 +34,8 @@ namespace SAMarineAndBoatSupplies
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddSession();
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -58,7 +60,7 @@ namespace SAMarineAndBoatSupplies
             }
 
             app.UseStaticFiles();
-            //app.UseSession();
+            app.UseSession();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
