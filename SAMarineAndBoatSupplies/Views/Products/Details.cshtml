@@ -4,7 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
+<a class="nav-link" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.Id">Edit Entry</a>
 <div class="row d-flex align-items-center ">
+
     <div id="product-img-container" class="col-sm-6 animated fadeIn align-self-stretch">
         <img id="product-image" src="~/images/@Model.ImagePath" alt="Alternate Text" />
     </div>
@@ -14,7 +16,13 @@
             <h1>@Model.Name</h1>
             <p>@Model.Description</p>
             <h3>@Model.Price.ToString("c")</h3>
-            <button class="btn btn-outline-light">Add To Cart</button>
+            @if (Model.IsInStock == true)
+            {
+                <button class="btn btn-outline-light">Add To Cart</button>
+            }
+            else {
+                <button class="btn btn-outline-light">Out of stock</button>
+            }
         </div>
     </div>
 </div>
