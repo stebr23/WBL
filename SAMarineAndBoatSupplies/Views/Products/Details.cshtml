@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<a class="nav-link" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.Id">Edit Entry</a>
+
 <div class="row d-flex align-items-center ">
 
     <div id="product-img-container" class="col-sm-6 animated fadeIn align-self-stretch">
@@ -27,4 +27,5 @@
     </div>
 </div>
 
+<a class="d-flex align-items-baseline" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.Id"><div class="triangle"></div><h4> Edit Entry</h4></a>
 <a class="d-flex align-items-baseline" asp-action="Index"><div class="triangle"></div><h4>Back to List</h4></a>
