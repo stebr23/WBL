@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SAMarineAndBoatSupplies.Data;
 using SAMarineAndBoatSupplies.Models;
 using SAMarineAndBoatSupplies.Models.ShoppingCartViewModel;
@@ -36,9 +37,10 @@ namespace SAMarineAndBoatSupplies.Controllers
             return View(sCVM);
         }
 
-        public RedirectToActionResult AddToSHoppingCart(int productId)
+        public RedirectToActionResult AddToShoppingCart(int id)
         {
-            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == productId);
+            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
+            //var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == 1);
             if (selectedProduct != null)
             {
                 _shoppingCart.AddToCart(selectedProduct, 1);
@@ -46,9 +48,9 @@ namespace SAMarineAndBoatSupplies.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveToSHoppingCart(int productId)
+        public RedirectToActionResult RemoveFromShoppingCart(int id)
         {
-            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == productId);
+            var selectedProduct = _context.Product.FirstOrDefault(p => p.Id == id);
             if (selectedProduct != null)
             {
                 _shoppingCart.RemoveFromCart(selectedProduct);

@@ -3,19 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-SAMarineAndBoatSupplies-6A809722-5985-41EF-B389-4F1D358439FC</UserSecretsId>
+    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+    <Win32Resource />
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.AssemblyInfo.cs" />
-    <Compile Include="obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs" />
-    <Compile Include="obj\Release\netcoreapp2.0\SAMarineAndBoatSupplies.AssemblyInfo.cs" />
+    <Compile Remove="bin\Release\**" />
+    <Compile Remove="obj\Release\**" />
+    <Content Remove="bin\Release\**" />
+    <Content Remove="obj\Release\**" />
+    <EmbeddedResource Remove="bin\Release\**" />
+    <EmbeddedResource Remove="obj\Release\**" />
+    <None Remove="bin\Release\**" />
+    <None Remove="obj\Release\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.deps.json" />
-    <Content Include="bin\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.runtimeconfig.dev.json" />
-    <Content Include="bin\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.runtimeconfig.json" />
-    <Content Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.csproj.FileListAbsolute.txt" />
     <Content Include="obj\project.assets.json" />
   </ItemGroup>
 
@@ -36,22 +40,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.dll" />
-    <None Include="bin\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.pdb" />
-    <None Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.AssemblyInfoInputs.cache" />
-    <None Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.csproj.CoreCompileInputs.cache" />
-    <None Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.csprojResolveAssemblyReference.cache" />
-    <None Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.dll" />
-    <None Include="obj\Debug\netcoreapp2.0\SAMarineAndBoatSupplies.pdb" />
-    <None Include="obj\Release\netcoreapp2.0\SAMarineAndBoatSupplies.AssemblyInfoInputs.cache" />
-    <None Include="obj\Release\netcoreapp2.0\SAMarineAndBoatSupplies.csproj.CoreCompileInputs.cache" />
     <None Include="obj\SAMarineAndBoatSupplies.csproj.nuget.cache" />
     <None Include="obj\SAMarineAndBoatSupplies.csproj.nuget.g.props" />
     <None Include="obj\SAMarineAndBoatSupplies.csproj.nuget.g.targets" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="bin\Release\netcoreapp2.0\" />
+    <Folder Include="bin\" />
   </ItemGroup>
 
 </Project>

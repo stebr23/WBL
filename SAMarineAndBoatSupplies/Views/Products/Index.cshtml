@@ -64,7 +64,7 @@
         <div id="product-list" class="d-flex flex-wrap justify-content-around">
             @foreach (var product in Model.Products)
             {
-                <a asp-action="Details" asp-route-id="@product.Id">
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
                     <div class="card">
                         <div class="card-img-top" >
                             <img src="~/images/@product.ImagePath" alt="Alternate Text" />
@@ -72,6 +72,7 @@
                         <div class="card-body" data-toggle="tooltip" title="View Item Details" data-placement="bottom">
                             <h6 class="card-title">@product.Name</h6>
                             <p class="card-text">@product.Price.ToString("c")</p>
+                            <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@product.Id">Add to cart</a>
                         </div>
                     </div>
                 </a>
