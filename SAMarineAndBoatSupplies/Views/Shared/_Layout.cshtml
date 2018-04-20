@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SAMarineAndBoatSupplies</title>
 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Poiret+One|Raleway:900" rel="stylesheet">
     <link href="~/css/animate.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark nav-bg fixed-top">
@@ -43,8 +46,10 @@
                     <a class="nav-link" asp-controller="Products" asp-action="Create">Add New Item</a>
                 </li>
 
-            </ul>
+                @await Component.InvokeAsync("ShoppingCartSummary")
 
+            </ul>
+            
             <form class="form-inline my-2 my-lg-0" asp-action="Index" asp-controller="Products" method="post">
                 <input id="nav-search" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search Products" aria-label="Search" name="SearchString" >
                 
@@ -52,7 +57,7 @@
             </form>
         </div>
     </nav>
-    <div class="container-fluid body-content main">
+    <div class="container-fluid body-content main animated fadeIn">
         @RenderBody()
     </div>
 
