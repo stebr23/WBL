@@ -28,6 +28,7 @@ namespace SAMarineAndBoatSupplies.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(AdminViewModel adminViewModel)
         {
             if (!ModelState.IsValid)

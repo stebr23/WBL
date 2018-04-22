@@ -11,9 +11,10 @@ using System;
 namespace SAMarineAndBoatSupplies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180422173414_OrderSizeAmendment")]
+    partial class OrderSizeAmendment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,8 +196,7 @@ namespace SAMarineAndBoatSupplies.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("County")
-                        .HasMaxLength(50);
+                    b.Property<string>("County");
 
                     b.Property<string>("Email")
                         .IsRequired()

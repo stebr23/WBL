@@ -42,27 +42,30 @@
                 </li>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <li class="nav-item">
-                        <a class="admin-link nav-link" asp-controller="Admin" asp-action="Dashboar">DASHBOARD</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="admin-link nav-link" asp-controller="Products" asp-action="Create">Add New Item</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle admin-link" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                            ADMIN
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
+                            <a class="dropdown-item" asp-controller="Products" asp-action="Create">Add New Product</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <form asp-controller="Admin" asp-action="Logout" id="logoutForm" method="post">
                             <a class="admin-link nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
                         </form>
                     </li>
-                 }
+                }
 
 
                 @await Component.InvokeAsync("ShoppingCartSummary")
 
             </ul>
-            
+
             <form class="form-inline my-2 my-lg-0" asp-action="Index" asp-controller="Products" method="post">
-                <input id="nav-search" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search Products" aria-label="Search" name="SearchString" >
-                
+                <input id="nav-search" class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search Products" aria-label="Search" name="SearchString">
+
                 <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>

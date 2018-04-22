@@ -142,6 +142,7 @@ a:not([href]):not([tabindex]) {
     border: none;
     border-radius: 0;
     transition: box-shadow 0.2s ease;
+    margin: 0 auto 2vw;
 }
 
     .card:hover {
