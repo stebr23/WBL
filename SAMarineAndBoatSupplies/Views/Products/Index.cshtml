@@ -1,4 +1,6 @@
-﻿@model SAMarineAndBoatSupplies.Models.ProdctViewModel.ProductViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model SAMarineAndBoatSupplies.Models.ProdctViewModel.ProductViewModel
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = "Index";
@@ -66,13 +68,23 @@
             {
                 <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
                     <div class="card">
-                        <div class="card-img-top" >
+                        <div class="card-img-top">
                             <img src="~/images/@product.ImagePath" alt="Alternate Text" />
                         </div>
                         <div class="card-body" data-toggle="tooltip" title="View Item Details" data-placement="bottom">
                             <h6 class="card-title">@product.Name</h6>
                             <p class="card-text">@product.Price.ToString("c")</p>
-                            <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@product.Id">Add to cart</a>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <hr />
+                                <a class="btn btn-success btn-block" asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+                                <hr />
+                                <a class="btn btn-danger btn-block" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id">Delete</a> 
+                            }
+                            else
+                            {
+                                <a class="btn btn-primary btn-block" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@product.Id">Add to cart</a>
+                            }
                         </div>
                     </div>
                 </a>
