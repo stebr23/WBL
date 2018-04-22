@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+
+@inject SignInManager<IdentityUser> SignInManager
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,22 +33,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                        Shop
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Index">All</a>
-                        <a class="dropdown-item" asp-area="" asp-controller="Products" asp-action="Shop" asp-route-cat="Whosits">Whosits</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Products" asp-action="Index">Shop</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="About">About Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Products" asp-action="Create">Add New Item</a>
-                </li>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
+                        <a class="admin-link nav-link" asp-controller="Admin" asp-action="Dashboar">DASHBOARD</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="admin-link nav-link" asp-controller="Products" asp-action="Create">Add New Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <form asp-controller="Admin" asp-action="Logout" id="logoutForm" method="post">
+                            <a class="admin-link nav-link" href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+                        </form>
+                    </li>
+                 }
+
 
                 @await Component.InvokeAsync("ShoppingCartSummary")
 

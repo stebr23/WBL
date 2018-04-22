@@ -52,6 +52,10 @@
     border: none;
 }
 
+.admin-link {
+    color: #fff !important;
+}
+
 body {
     /*background: url('bg1.jpg') center no-repeat;
     background-size: cover;*/
