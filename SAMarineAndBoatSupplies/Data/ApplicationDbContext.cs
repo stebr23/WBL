@@ -25,5 +25,7 @@ namespace SAMarineAndBoatSupplies.Data
 
         public DbSet<Product> Product { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
     }
 }
