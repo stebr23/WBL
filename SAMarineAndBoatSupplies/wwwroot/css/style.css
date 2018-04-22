@@ -142,7 +142,7 @@ a:not([href]):not([tabindex]) {
     border: none;
     border-radius: 0;
     transition: box-shadow 0.2s ease;
-    margin: 0 auto 2vw;
+    margin: 0 auto 3vw;
 }
 
     .card:hover {
@@ -176,6 +176,10 @@ a:not([href]):not([tabindex]) {
 .card-text {
     text-align: right;
 }
+
+    .card-text:last-child {
+        margin-bottom: 10px;
+    }
 
 a {
     text-decoration: none;
@@ -241,6 +245,16 @@ a {
     margin-top: 20px;
     margin-right: 5px;
 }
+
+.btn-primary {
+    background-color: var(--bg);
+    border-color: var(--bg);
+}
+
+    .btn-primary:hover {
+        background-color: var(--bgah);
+        border-color: var(--bgah);
+    }
 
 @media only screen and (max-width: 420px) {
     .navbar-brand {

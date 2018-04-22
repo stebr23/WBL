@@ -22,14 +22,16 @@ namespace SAMarineAndBoatSupplies.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            IQueryable<string> catQuery = from p in _context.Product select p.Name;
+            //IQueryable<string> catQuery = from p in _context.Product select p.Name;
 
             var products = from p in _context.Product select p;
-            
-            // If Quantity < 1 then dont return
-            //products = products.Where(s => s.IsInStock == false);
+
+            if (searchString != null)
+            {
+                products = products.Where(p => p.Name.Contains(searchString) || p.Description.Contains(searchString));
+            }
 
             var productCategoryVM = new ProductViewModel
             {

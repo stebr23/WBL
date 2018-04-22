@@ -72,6 +72,9 @@ namespace SAMarineAndBoatSupplies
                 routes.MapRoute(
                     name: "cart",
                     template: "{controller=ShoppingCart}/{action=AddToShoppingCart}/{productId?}");
+                routes.MapRoute(
+                    name: "search",
+                    template: "{controller=Search}/{action=Index}/{searchString}");
             });
         }
     }
