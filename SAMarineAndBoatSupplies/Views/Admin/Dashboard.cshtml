@@ -1,0 +1,60 @@
+﻿@model SAMarineAndBoatSupplies.Models.AdminViewModel.DashboardViewModel
+
+
+
+
+<div class="accordion-div">
+    <p>
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#pending" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Pending Orders (@Model.Orders.Count())
+        </a>
+    </p>
+    <div class="accordion-div-div collapse" id="pending">
+        <div class="">
+            @foreach (var order in Model.Orders)
+            {
+                <a asp-controller="Admin" asp-action="OrderDetails" asp-route-id="@order.OrderId">
+                    <p>ORDER: @order.FirstName @order.LastName, @order.PhoneNumber, @order.OrderTotal.ToString("c"), @order.OrderId</p>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="accordion-div">
+    <p>
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#cats" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Manage Product Categories
+        </a>
+    </p>
+    <div class="accordion-div-div collapse" id="cats">
+        List categories
+        Add category
+        Remove Category (cannot remove category that is associated with an existsing product)
+    </div>
+</div>
+<div class="accordion-div">
+    <p>
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#something1" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Something 1
+        </a>
+    </p>
+    <div class="accordion-div-div collapse" id="something1">
+        List categories
+        Add category
+        Remove Category (cannot remove category that is associated with an existsing product)
+    </div>
+</div>
+<div class="accordion-div">
+    <p>
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#something2" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Something 2
+        </a>
+    </p>
+    <div class="accordion-div-div collapse" id="something2">
+        List categories
+        Add category
+        Remove Category (cannot remove category that is associated with an existsing product)
+    </div>
+</div>

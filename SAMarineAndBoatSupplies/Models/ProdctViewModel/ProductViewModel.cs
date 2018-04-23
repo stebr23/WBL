@@ -7,7 +7,6 @@ namespace SAMarineAndBoatSupplies.Models.ProdctViewModel
 {
     public class ProductViewModel
     {
-        
         public List<Product> Products { get; set; }
         public string Title { get; set; }
     }

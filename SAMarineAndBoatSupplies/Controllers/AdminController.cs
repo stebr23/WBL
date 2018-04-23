@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SAMarineAndBoatSupplies.Data;
+using SAMarineAndBoatSupplies.Models;
 using SAMarineAndBoatSupplies.Models.AdminViewModel;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,11 +17,13 @@ namespace SAMarineAndBoatSupplies.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-        public AdminController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AdminController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
         }
 
         // GET: /<controller>/
@@ -81,9 +86,37 @@ namespace SAMarineAndBoatSupplies.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            return View();
+            var orders = from o in _context.Orders select o;
+
+            var dashViewModel = new DashboardViewModel {
+                Orders = await orders.ToListAsync()
+            };
+
+            return View(dashViewModel);
+        }
+
+        public async Task<IActionResult> OrderDetails(int id)
+        {
+            var orderDetail = from od in _context.OrderDetail select od;
+            orderDetail = orderDetail.Where(o => o.OrderId == id);
+
+            var order = await _context.Orders.SingleOrDefaultAsync(o => o.OrderId == id);
+
+            var result = from detail in _context.OrderDetail
+                         join product in _context.Product on detail.ProductId equals product.Id
+                         where detail.OrderId == id
+                         select product;
+           
+            var oVM = new OrderViewModel
+            {
+                OrderDetails = await orderDetail.ToListAsync(),
+                Products = await result.ToListAsync(),
+                Order = order
+            };
+
+            return View(oVM);
         }
     }
 }

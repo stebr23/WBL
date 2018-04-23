@@ -1,0 +1,71 @@
+﻿@model SAMarineAndBoatSupplies.Models.AdminViewModel.OrderViewModel
+
+<h2>Customer Details</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">@Model.Order.FirstName @Model.Order.LastName</td>
+            <td class="text-center">@Model.Order.PhoneNumber</td>
+            <td class="text-left">@Model.Order.Email</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Order Information</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Order Number</th>
+            <th>Order Time</th>
+            <th class="text-right">Order Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-center">@Model.Order.OrderId</td>
+            <td class="text-center">@Model.Order.OrderPlaced</td>
+            <td class="text-right">@Model.Order.OrderTotal.ToString("c")</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Ordered Products</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr>
+                <td class="text-center">
+                    <div class="card-img-top">
+                        <img src="~/images/@p.ImagePath" alt="Alternate Text" />
+                    </div>
+                </td>
+                <td class="text-left">@p.Name</td>
+                <td class="text-right">@p.Price.ToString("c")</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="text-right">Total:</td>
+            <td class="text-right">@Model.Order.OrderTotal</td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    <a class="btn btn-danger" asp-controller="Admin" asp-action="Dashboard">Remove Order</a>
+</div>
