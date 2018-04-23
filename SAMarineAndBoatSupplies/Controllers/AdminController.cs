@@ -118,5 +118,25 @@ namespace SAMarineAndBoatSupplies.Controllers
 
             return View(oVM);
         }
+
+        public RedirectToActionResult RemoveOrder(int id)
+        {
+            var orderDetail = from o in _context.OrderDetail select o;
+            orderDetail = orderDetail.Where(o => o.OrderId == id);
+
+            var order = from o in _context.Orders select o;
+            order = order.Where(o => o.OrderId == id);
+            
+
+            if (orderDetail != null && order != null)
+            {
+                _context.OrderDetail.RemoveRange(orderDetail);
+                _context.Orders.RemoveRange(order);
+                _context.SaveChanges();
+            }
+
+
+            return RedirectToAction("Dashboard");
+        }
     }
 }
