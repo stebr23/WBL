@@ -9,11 +9,11 @@
             Pending Orders (@Model.Orders.Count())
         </a>
     </p>
-    <div class="accordion-div-div collapse" id="pending">
+    <div class="accordion-div-div collapse show" id="pending">
         <div class="">
             @foreach (var order in Model.Orders)
             {
-                <a asp-controller="Admin" asp-action="OrderDetails" asp-route-id="@order.OrderId">
+                <a class="pending-link" asp-controller="Admin" asp-action="OrderDetails" asp-route-id="@order.OrderId">
                     <p>ORDER: @order.FirstName @order.LastName, @order.PhoneNumber, @order.OrderTotal.ToString("c"), @order.OrderId</p>
                 </a>
             }

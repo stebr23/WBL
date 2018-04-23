@@ -16,16 +16,9 @@
             <h1>@Model.Name</h1>
             <p>@Model.Description</p>
             <h3>@Model.Price.ToString("c")</h3>
-            @if (Model.IsInStock == true)
-            {
-                <button class="btn btn-outline-light">Add To Cart</button>
-            }
-            else {
-                <button class="btn btn-outline-light">Out of stock</button>
-            }
+            <a class="btn btn-outline-light btn-block" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.Id">Add to cart</a>
         </div>
     </div>
 </div>
 
-<a class="d-flex align-items-baseline" asp-controller="Products" asp-action="Edit" asp-route-id="@Model.Id"><div class="triangle"></div><h4> Edit Entry</h4></a>
 <a class="d-flex align-items-baseline" asp-action="Index"><div class="triangle"></div><h4>Back to List</h4></a>

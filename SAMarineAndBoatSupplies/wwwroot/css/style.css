@@ -129,6 +129,10 @@ a:not([href]):not([tabindex]) {
     font-size: 80%;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    background-color: var(--bg);
+}
+
 #product-list {
     margin-top: 20px;
 }
@@ -191,8 +195,20 @@ a {
         color: var(--bg);
     }
 
+.pending-link:hover > p {
+    background-color: hsla(217, 72%, 99%, 1);
+}
+
 .accordion-div {
     background-color: hsla(217, 72%, 92%, 1);
+}
+
+.table {
+    background-color: #fff;
+}
+
+.table td {
+    vertical-align: middle;
 }
 
 .accordion-div-div {

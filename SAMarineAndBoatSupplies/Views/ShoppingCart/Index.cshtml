@@ -1,24 +1,37 @@
 ﻿@model SAMarineAndBoatSupplies.Models.ShoppingCartViewModel.ShoppingCartViewModel
 
-    <div class="">
+<div class="">
+    <a class="d-flex align-items-baseline" href='javascript:history.go(-1)'><div class="triangle"></div><h4>Back</h4></a><br/>
     <h2>Your shopping cart</h2>
-    <table class="table table-bordered table-striped">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Selected amount</th>
-                <th>Product</th>
-                <th class="text-right">Price</th>
-                <th class="text-right">Subtotal</th>
+                <th class="text-center">Product Image</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Product</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Subtotal</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
             {
                 <tr>
-                    <td class="text-center">@line.Quantity</td>
-                    <td class="text-left">@line.Product.Name</td>
-                    <td class="text-right">@line.Product.Price.ToString("c")</td>
-                    <td class="text-right">
+                    <td class="text-center">
+                        <div class="card-img-top">
+                            <img src="~/images/@line.Product.ImagePath" alt="Alternate Text" />
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-around align-items-center">
+                            <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-id="@line.Product.Id"><i class="fas fa-minus"></i></a>
+                            <strong><h3> @line.Quantity </h3></strong>
+                            <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@line.Product.Id"><i class="fas fa-plus"></i></a>
+                        </div>
+                    </td>
+                    <td class="text-center">@line.Product.Name</td>
+                    <td class="text-center">@line.Product.Price.ToString("c")</td>
+                    <td class="text-center">
                         @((line.Quantity * line.Product.Price).ToString("c"))
                     </td>
                 </tr>
@@ -26,9 +39,9 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" class="text-right">Total:</td>
+                <td colspan="4" class="text-right"><strong>Total:</strong></td>
                 <td class="text-right">
-                    @Model.ShoppingCartTotal.ToString("c")
+                    <strong>@Model.ShoppingCartTotal.ToString("c")</strong>
                 </td>
             </tr>
         </tfoot>
@@ -36,4 +49,4 @@
     <div class="text-center">
         <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Proceed to Checkout</a>
     </div>
-    </div>
+</div>
