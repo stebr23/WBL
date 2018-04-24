@@ -11,9 +11,10 @@ using System;
 namespace SAMarineAndBoatSupplies.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180424111005_ProductCategoryMigration")]
+    partial class ProductCategoryMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,18 +178,6 @@ namespace SAMarineAndBoatSupplies.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SAMarineAndBoatSupplies.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("SAMarineAndBoatSupplies.Models.Order", b =>

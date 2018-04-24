@@ -1,0 +1,35 @@
+﻿@model SAMarineAndBoatSupplies.Models.ProdctViewModel.ProductViewModel
+
+<div class="col-xs-12 col-sm-4">
+
+    <div class="sidebar list-group d-none d-sm-block">
+
+        <a asp-controller="Products" asp-action="Index" class="list-group-item list-group-item-action active">All</a>
+        @foreach (var cat in Model.Categories)
+        {
+            <a asp-controller="Products" asp-action="Filter" asp-route-id="@cat.CategoryId" class="list-group-item list-group-item-action">@cat.Name</a>
+        }
+
+    </div>
+
+    <div class="sidebar list-group d-sm-none">
+
+        <button class="btn list-group-item navbar-toggler active" id="categories-button" data-toggle="collapse" data-target="#cat-menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle categories">
+            Categories
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div id="cat-menu" class="collapse">
+
+            <a asp-controller="Products" asp-action="Index" class="list-group-item list-group-item-action active">All</a>
+            @foreach (var cat in Model.Categories)
+    {
+        <a asp-controller="Products" asp-action="Filter" asp-route-id="@cat.CategoryId" class="list-group-item list-group-item-action">@cat.Name</a>
+}
+
+        </div>
+
+    </div>
+
+</div>

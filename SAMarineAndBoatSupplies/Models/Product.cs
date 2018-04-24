@@ -18,5 +18,7 @@ namespace SAMarineAndBoatSupplies.Models
         public bool IsInStock { get; set; }
 
         public string ImagePath { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }

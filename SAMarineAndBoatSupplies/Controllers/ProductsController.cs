@@ -21,12 +21,14 @@ namespace SAMarineAndBoatSupplies.Controllers
             _context = context;
         }
 
+
         // GET: Products
         public async Task<IActionResult> Index(string searchString)
         {
             //IQueryable<string> catQuery = from p in _context.Product select p.Name;
 
             var products = from p in _context.Product select p;
+            var categories = from c in _context.Category select c;
 
             if (searchString != null)
             {
@@ -35,10 +37,30 @@ namespace SAMarineAndBoatSupplies.Controllers
 
             var productCategoryVM = new ProductViewModel
             {
-                Products = await products.ToListAsync()
+                Products = await products.ToListAsync(),
+                Categories = await categories.ToListAsync()
             };
 
             return View(productCategoryVM);
+        }
+
+        public async Task<IActionResult> Filter(int? id)
+        {
+            var products = from p in _context.Product select p;
+            if (id != null)
+            {
+                products = products.Where(p => p.CategoryId == id);
+            }
+
+            var categories = from c in _context.Category select c;
+
+            var pCVM = new ProductViewModel
+            {
+                Products = await products.ToListAsync(),
+                Categories = await categories.ToListAsync()
+            };
+
+            return View("Index", pCVM);
         }
 
         // GET: Products/Details/5

@@ -1,7 +1,7 @@
 ﻿@model SAMarineAndBoatSupplies.Models.ShoppingCartViewModel.ShoppingCartViewModel
 
 <div class="">
-    <a class="d-flex align-items-baseline" href='javascript:history.go(-1)'><div class="triangle"></div><h4>Back</h4></a><br/>
+    <a class="d-flex align-items-baseline" href='javascript:history.go(-1)'><div class="triangle"></div><h4>Back</h4></a><br />
     <h2>Your shopping cart</h2>
     <table class="table table-striped">
         <thead>
@@ -46,7 +46,11 @@
             </tr>
         </tfoot>
     </table>
-    <div class="text-center">
-        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Proceed to Checkout</a>
-    </div>
+    @if (Model.ShoppingCartTotal != 0)
+    {
+        <div class="text-center">
+            <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Proceed to Checkout</a>
+        </div>
+    }
+
 </div>
