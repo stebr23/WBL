@@ -211,6 +211,10 @@ a {
     vertical-align: middle;
 }
 
+#cats {
+    padding: 1% 4%;
+}
+
 .accordion-div-div {
     padding: 1% 3%;
     margin-bottom: 15px;

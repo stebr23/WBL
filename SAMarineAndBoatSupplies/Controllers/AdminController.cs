@@ -89,9 +89,11 @@ namespace SAMarineAndBoatSupplies.Controllers
         public async Task<IActionResult> Dashboard()
         {
             var orders = from o in _context.Orders select o;
+            var categories = from c in _context.Category select c;
 
             var dashViewModel = new DashboardViewModel {
-                Orders = await orders.ToListAsync()
+                Orders = await orders.ToListAsync(),
+                Categories = await categories.ToListAsync()
             };
 
             return View(dashViewModel);
@@ -117,6 +119,31 @@ namespace SAMarineAndBoatSupplies.Controllers
             };
 
             return View(oVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToActionResult AddCategory(string categoryName)
+        {
+            _context.Category.Add(new Category { Name = categoryName });
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToActionResult RemoveCategory(int categoryId)
+        {
+            var category = (from c in _context.Category select c);
+            category = category.Where(c => c.CategoryId == categoryId);
+            if (category != null)
+            {
+                _context.Category.RemoveRange(category);
+                _context.SaveChanges();
+            }
+            
+            return RedirectToAction("Dashboard");
         }
 
         public RedirectToActionResult RemoveOrder(int id)
