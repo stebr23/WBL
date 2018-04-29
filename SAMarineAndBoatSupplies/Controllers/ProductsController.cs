@@ -257,6 +257,20 @@ namespace SAMarineAndBoatSupplies.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Product.SingleOrDefaultAsync(m => m.Id == id);
+
+            var sCI = from s in _context.ShoppingCartItems select s;
+            sCI = sCI.Where(s => s.Product.Id == id);
+
+            var sList = sCI.ToList();
+
+            if (sList.Count > 0)
+            {
+                foreach (var s in sList)
+                {
+                    _context.ShoppingCartItems.Remove(s);
+                }
+            }
+
             _context.Product.Remove(product);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

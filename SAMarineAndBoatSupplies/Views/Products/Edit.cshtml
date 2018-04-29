@@ -8,7 +8,7 @@
 <a class="d-flex align-items-baseline" asp-action="Index"><div class="triangle"></div><h4>Back to Dashboard</h4></a><br />
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Product.Id" />
@@ -40,18 +40,20 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="Product.CategoryId" class="control-label">Select Category</label>
-                        <input asp-for="Product.CategoryId" name="Product.CategoryId" class="form-control" />
-                        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                        <select name="Product.CategoryId"  asp-for="Product.CategoryId" class="custom-select mr-sm-2" id="inlineFormCustomSelectPref">
+                            <option value="Product.CategoryId" selected>--Select Category--</option>
+                            @foreach (var category in Model.Categories)
+                            {
+                                        <option value="@category.CategoryId">@category.Name</option>
+                            }
+                        </select>
                     </div>
                 </div>
             </div>
-            <div class="col">
                 <div class="form-group">
                     <label asp-for="Product.ImagePath" name="img" class="control-label">Upload New Image</label>
                     <input asp-for="Product.ImagePath" name="img" class="form-control" type="file" />
                 </div>
-
-            </div>
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-lg btn-success" />
