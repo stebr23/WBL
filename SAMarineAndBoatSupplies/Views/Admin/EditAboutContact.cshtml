@@ -1,0 +1,69 @@
+﻿@model SAMarineAndBoatSupplies.Models.AboutContact
+
+@{
+    ViewData["Title"] = "Edit About Contact";
+}
+
+<h2 class="display-4">Edit About and Contact details</h2>
+<a class="d-flex align-items-baseline" asp-action="Index"><div class="triangle"></div><h4>Back to Dashboard</h4></a><br />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="EditAboutContact">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="1" />
+
+            <h4>About Us</h4>
+            <div class="form-group">
+                <label asp-for="AboutMessage" class="control-label">About Us Message</label>
+                <textarea asp-for="AboutMessage" class="form-control"></textarea>
+                <span asp-validation-for="AboutMessage" class="text-danger"></span>
+            </div>
+            <h4>Contact Us</h4>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="AddressLine1" class="control-label">Address Line 1</label>
+                        <input asp-for="AddressLine1" class="form-control" />
+                        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="AddressLine2" class="control-label">Address Line 2</label>
+                        <input asp-for="AddressLine2" class="form-control" />
+                        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="PostCode" class="control-label">Post Code</label>
+                        <input asp-for="PostCode" class="form-control" />
+                        <span asp-validation-for="PostCode" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-lg btn-success" />
+            </div>
+        </form>
+    </div>
+</div>

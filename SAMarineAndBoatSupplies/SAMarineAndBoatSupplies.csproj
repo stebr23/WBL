@@ -20,6 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20180429141600_AboutContactWelcome8.cs" />
+    <Compile Remove="Data\Migrations\20180429141600_AboutContactWelcome8.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="obj\project.assets.json" />
   </ItemGroup>
 

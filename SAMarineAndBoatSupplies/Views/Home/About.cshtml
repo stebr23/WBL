@@ -1,24 +1,25 @@
-﻿@{
+﻿@model SAMarineAndBoatSupplies.Models.AboutContact
+
+@{
     ViewData["Title"] = "About Us";
 }
 
 <div class="animated fadeIn main" id="main">
     <h2 class="display-4">@ViewData["Title"]</h2>
 
-    <p class="lead">This is a working boatyard on Richmond Walk in Plymouth. We offer storage and moorings as well as repairs, which include gel repairs, resprays, rudders, keels, masts, riggings.</p>
-
+    <p class="lead">@Model.AboutMessage</p>
     <br />
 
     <h2 class="display-4">Contact Us</h2>
 
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        Phone: 425.555.0100
+        @Model.AddressLine1<br />
+        @Model.AddressLine2<br />
+        @Model.City<br />
+        @Model.PostCode<br />
     </address>
 
     <address>
-        <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong>Email:</strong> <a href="mailto:@Model.Email">@Model.Email</a><br />
     </address>
 </div>

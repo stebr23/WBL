@@ -11,5 +11,7 @@ namespace SAMarineAndBoatSupplies.Models.AdminViewModel
         public Order Order { get; set; }
         public List<Category> Categories { get; set; }
         public Category Category { get; set; }
+        public Welcome Welcome { get; set; }
+        public AboutContact AboutContact { get; set; }
     }
 }

@@ -26,5 +26,7 @@ namespace SAMarineAndBoatSupplies.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Welcome> Welcome { get; set; }
+        public DbSet<AboutContact> AboutContact { get; set; }
     }
 }

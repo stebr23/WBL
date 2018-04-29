@@ -21,6 +21,7 @@
     </div>
 </div>
 <br />
+
 <div class="accordion-div">
     <p>
         <a class="btn btn-primary btn-block" data-toggle="collapse" href="#cats" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -55,28 +56,45 @@
     </div>
 </div>
 <br />
+
 <div class="accordion-div">
     <p>
-        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#something1" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Something 1
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#welcome" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Welcome Message
         </a>
     </p>
-    <div class="collapse" id="something1">
-        List categories
-        Add category
-        Remove Category (cannot remove category that is associated with an existsing product)
+    <div class="collapse" id="welcome">
+        Edit the Welcome index page messages:
+        <form asp-action="EditWelcome">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Welcome.Id" value="1" name="Welcome.Id"/>
+            <div class="form-group">
+                <label asp-for="Welcome.Welcome1" class="control-label"></label>
+                <input asp-for="Welcome.Welcome1" class="form-control" name="Welcome.Welcome1"/>
+                <span asp-validation-for="Welcome.Welcome1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Welcome.Welcome2" class="control-label"></label>
+                <input asp-for="Welcome.Welcome2" class="form-control" name="Welcome.Welcome2"/>
+                <span asp-validation-for="Welcome.Welcome2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
     </div>
 </div>
 <br/>
+
 <div class="accordion-div">
     <p>
-        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#something2" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Something 2
+        <a class="btn btn-primary btn-block" data-toggle="collapse" href="#ab" role="button" aria-expanded="false" aria-controls="collapseExample">
+            About / Contact Page Information
         </a>
     </p>
-    <div class="collapse" id="something2">
-        List categories
-        Add category
-        Remove Category (cannot remove category that is associated with an existsing product)
+    <div class="collapse" id="ab">
+        <div class="col-lg-12 d-flex justify-content-center">
+            <a role="button" class="btn btn-large btn-success" asp-action="EditAboutContact" asp-route-id="1">Edit About Page</a>
+        </div><br />
     </div>
 </div>

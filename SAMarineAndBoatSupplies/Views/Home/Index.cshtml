@@ -1,13 +1,14 @@
-﻿@{
+﻿@model SAMarineAndBoatSupplies.Models.Welcome
+@{
     ViewData["Title"] = "Welcome";
 }
 
 <div class="row d-flex align-items-center ">
     <div id="main-left" class="col-sm-7">
         <h1 class="display-4">Welcome</h1>
-        <p class="lead">This is a working boatyard on Richmond Walk in Plymouth. We offer storage and moorings as well as repairs, which include gel repairs, resprays, rudders, keels, masts, riggings. </p>
+        <p class="lead">@Model.Welcome1</p>
         <hr class="my-4">
-        <p>We also undertake electrical works on all areas of the boat. Insurance work? No problem. We offer a complete service.</p>
+        <p>@Model.Welcome2</p>
     </div>
 
     <div class="col-sm-5 animated fadeIn">

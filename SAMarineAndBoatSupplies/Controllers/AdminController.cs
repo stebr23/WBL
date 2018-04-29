@@ -56,6 +56,7 @@ namespace SAMarineAndBoatSupplies.Controllers
         }
 
         /*
+         * UNCOMMENT TO ADD ANOTHER ACCOUNT
         public IActionResult Register()
         {
             return View(new AdminViewModel());
@@ -90,10 +91,14 @@ namespace SAMarineAndBoatSupplies.Controllers
         {
             var orders = from o in _context.Orders select o;
             var categories = from c in _context.Category select c;
+            var welcome = from w in _context.Welcome select w;
+            var aboutContact = from a in _context.AboutContact select a;
 
             var dashViewModel = new DashboardViewModel {
                 Orders = await orders.ToListAsync(),
-                Categories = await categories.ToListAsync()
+                Categories = await categories.ToListAsync(),
+                Welcome = await welcome.FirstOrDefaultAsync(),
+                AboutContact = await aboutContact.FirstOrDefaultAsync()
             };
 
             return View(dashViewModel);
@@ -164,6 +169,47 @@ namespace SAMarineAndBoatSupplies.Controllers
 
 
             return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToActionResult EditWelcome(Welcome welcome)
+        {
+            _context.Update(welcome);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public RedirectToActionResult EditAbout(AboutContact about)
+        {
+            var one = HttpContext.Request.Form.Count();
+            var two = HttpContext.Request.Form["AddressLine1"];
+
+            if (ModelState.IsValid)
+            {
+                _context.AboutContact.Update(about);
+                _context.SaveChanges();
+            }
+            
+
+            return RedirectToAction("Dashboard");
+        }
+
+        public IActionResult EditAboutContact(int id)
+        {
+            return View(_context.AboutContact.FirstOrDefault());
+        }
+
+        [HttpPost]
+        public IActionResult EditAboutContact(AboutContact about)
+        {
+            _context.Update(about);
+            _context.SaveChanges();
+
+            return RedirectToAction("About", "Home");
         }
     }
 }
