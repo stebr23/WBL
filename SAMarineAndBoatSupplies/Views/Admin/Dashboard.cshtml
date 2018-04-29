@@ -34,7 +34,7 @@
                 <h3>Add Category</h3>
                 <form asp-action="AddCategory" method="post"class="form-inline my-2 my-lg-0">
                     <input asp-for="Category.Name" id="" class="form-control form-control-sm mr-sm-2" type="text" placeholder="Category Name" aria-label="Name" name="CategoryName">
-                    <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit">Add</button>
+                    <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Add</button>
                 </form>
             </div>
             <div class="col-lg-6 col-sm-12">
@@ -64,24 +64,26 @@
         </a>
     </p>
     <div class="collapse" id="welcome">
-        Edit the Welcome index page messages:
-        <form asp-action="EditWelcome">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Welcome.Id" value="1" name="Welcome.Id"/>
-            <div class="form-group">
-                <label asp-for="Welcome.Welcome1" class="control-label"></label>
-                <input asp-for="Welcome.Welcome1" class="form-control" name="Welcome.Welcome1"/>
-                <span asp-validation-for="Welcome.Welcome1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Welcome.Welcome2" class="control-label"></label>
-                <input asp-for="Welcome.Welcome2" class="form-control" name="Welcome.Welcome2"/>
-                <span asp-validation-for="Welcome.Welcome2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        <div style="padding: 1% 2%;">
+            Edit the Welcome index page messages:
+            <form asp-action="EditWelcome">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Welcome.Id" value="1" name="Welcome.Id" />
+                <div class="form-group">
+                    <label asp-for="Welcome.Welcome1" class="control-label"></label>
+                    <textarea asp-for="Welcome.Welcome1" class="form-control" name="Welcome.Welcome1"></textarea>
+                    <span asp-validation-for="Welcome.Welcome1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Welcome.Welcome2" class="control-label"></label>
+                    <textarea asp-for="Welcome.Welcome2" class="form-control" name="Welcome.Welcome2"></textarea>
+                    <span asp-validation-for="Welcome.Welcome2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <br/>
