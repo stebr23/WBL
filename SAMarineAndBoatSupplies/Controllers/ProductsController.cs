@@ -3,22 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 using SAMarineAndBoatSupplies.Data;
 using SAMarineAndBoatSupplies.Models;
 using SAMarineAndBoatSupplies.Models.ProdctViewModel;
+using System.IO;
 
 namespace SAMarineAndBoatSupplies.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
 
 
@@ -29,6 +34,7 @@ namespace SAMarineAndBoatSupplies.Controllers
 
             var products = from p in _context.Product select p;
             var categories = from c in _context.Category select c;
+            categories = categories.OrderBy(c => c.Name);
 
             if (searchString != null)
             {
@@ -53,6 +59,7 @@ namespace SAMarineAndBoatSupplies.Controllers
             }
 
             var categories = from c in _context.Category select c;
+            categories = categories.OrderBy(c => c.Name);
 
             var pCVM = new ProductViewModel
             {
@@ -94,15 +101,47 @@ namespace SAMarineAndBoatSupplies.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,IsInStock,ImagePath")] Product product)
+        public async Task<IActionResult> Create(Product product)
         {
             if (ModelState.IsValid)
             {
+                
+
+                //Upload file
+                if (HttpContext.Request.Form.Files != null)
+                {
+                    var files = HttpContext.Request.Form.Files;
+
+                    foreach (var file in files)
+                    {
+                        if (file.Length > 0)
+                        {
+                            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                            var uniqueFilename = Convert.ToString(Guid.NewGuid());
+                            var FileExtension = Path.GetExtension(filename);
+                            var newFilename = uniqueFilename + FileExtension;
+
+                            product.ImagePath = newFilename;
+
+                            filename = Path.Combine(_hostingEnvironment.WebRootPath, "images") + $@"\{newFilename}";
+
+
+                            using (FileStream fs = System.IO.File.Create(filename))
+                            {
+                                file.CopyTo(fs);
+                                fs.Flush();
+                            }
+                        }
+                    }
+                }
+
+
+                // Add product to db
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View("Index");
         }
 
         // GET: Products/Edit/5
@@ -119,15 +158,23 @@ namespace SAMarineAndBoatSupplies.Controllers
             {
                 return NotFound();
             }
-            return View(product);
+
+            var pVM = new ProductViewModel
+            {
+                Product = product,
+                Categories = await _context.Category.ToListAsync()
+            };
+
+            return View(pVM);
         }
 
         // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,IsInStock,ImagePath")] Product product)
+        public async Task<IActionResult> Edit(int id, Product product)
         {
             if (id != product.Id)
             {
@@ -136,6 +183,33 @@ namespace SAMarineAndBoatSupplies.Controllers
 
             if (ModelState.IsValid)
             {
+                if (HttpContext.Request.Form.Files != null)
+                {
+                    var files = HttpContext.Request.Form.Files;
+
+                    foreach (var file in files)
+                    {
+                        if (file.Length > 0)
+                        {
+                            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                            var uniqueFilename = Convert.ToString(Guid.NewGuid());
+                            var FileExtension = Path.GetExtension(filename);
+                            var newFilename = uniqueFilename + FileExtension;
+
+                            product.ImagePath = newFilename;
+
+                            filename = Path.Combine(_hostingEnvironment.WebRootPath, "images") + $@"\{newFilename}";
+
+
+                            using (FileStream fs = System.IO.File.Create(filename))
+                            {
+                                file.CopyTo(fs);
+                                fs.Flush();
+                            }
+                        }
+                    }
+                }
+
                 try
                 {
                     _context.Update(product);

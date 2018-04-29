@@ -7,24 +7,6 @@
 }
 
 <h2 class="display-4">Products</h2>
-<!--
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
-
-<form asp-action="Index" asp-controller="Products" method="post">
-    <p>
-
-        <select asp-for="productCategory" asp-items="Model.categories">
-            <option value="">All</option>
-        </select>
-            Title: <input type="text" name="SearchString" />
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
-
-            -->
 
 <div class="row">
 
@@ -73,7 +55,7 @@
                         <div class="card-img-top">
                             <img src="~/images/@product.ImagePath" alt="Alternate Text" />
                         </div>
-                        <div class="card-body" data-toggle="tooltip" title="View Item Details" data-placement="bottom">
+                        <div class="card-body" >
                             <h6 class="card-title">@product.Name</h6>
                             <p class="card-text">@product.Price.ToString("c")</p>
                             @if (SignInManager.IsSignedIn(User))

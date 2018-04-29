@@ -162,8 +162,6 @@ a:not([href]):not([tabindex]) {
 }
 
 .card-body {
-    border-top-left-radius: 100% 10%;
-    border-top-right-radius: 100% 10%;
     position: relative;
     top: -5px;
     background-color: #fff;

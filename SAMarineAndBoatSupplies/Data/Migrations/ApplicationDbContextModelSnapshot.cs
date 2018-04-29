@@ -269,13 +269,13 @@ namespace SAMarineAndBoatSupplies.Data.Migrations
 
                     b.Property<int>("CategoryId");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("ImagePath");
 
-                    b.Property<bool>("IsInStock");
-
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<decimal>("Price");
 
